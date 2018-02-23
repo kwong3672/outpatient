@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+
+import Header from './components/Header';
+import Summary from './components/Summary';
+import List from './components/List';
+
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      businesses: [],
+      total: 0
+    };
+  }
+
+  getYelpData = (location) => {
+    console.log('location :', location)
+    axios.get('http://localhost:8080', {
+      params: {
+        location : location
+      }
+    }).then(data => {
+      const { businesses, total } = data.data;
+      this.setState({
+        businesses: [...this.state.businesses, ...businesses],
+        total
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header getYelpData={this.getYelpData}/>
+        <div className="Sections">
+          <Summary total={this.state.total} businesses={this.state.businesses}/>
+          <List businesses={this.state.businesses}/>
+        </div>
       </div>
     );
   }
