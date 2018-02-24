@@ -18,6 +18,7 @@ class Business extends Component {
 class List extends Component {
 
   render() {
+    this.props.businesses.sort((a, b) => { return b.rating - a.rating })
     return (
       <div>
         <h3>List of Physical Therapists</h3>
