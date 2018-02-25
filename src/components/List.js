@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 
-class Business extends Component {
-  render() {
-    const address = this.props.location.display_address.join(' ');
-    return (
-      <div>
-        <div>Name: {this.props.name}</div>
-        <div>Rating: {this.props.rating}</div>
-        <div>Number of Reviews: {this.props.reviewCount}</div>
-        <div>Address: {address}</div>
-      </div>
-    )
-  }
-
-}
+import Card from './Card';
 
 class List extends Component {
-
   render() {
     this.props.businesses.sort((a, b) => { return b.rating - a.rating })
     return (
       <div>
-        <h3>List of Physical Therapists</h3>
+        <h3 className="title">List of Physical Therapists</h3>
         {this.props.businesses.map(business => 
-          <Business 
+          <Card 
             key={business.id} 
+            address={business.location.display_address.join(' ')}
+            category={business.categories[0].title}
+            image_url={business.image_url}
             name={business.name} 
             rating={business.rating}
-            reviewCount={business.review_count}
-            location={business.location} />
+            reviewCount={business.review_count} />
         )}
       </div>
     );

@@ -17,17 +17,17 @@ class App extends Component {
   }
 
   getYelpData = (location) => {
-    console.log('location :', location)
     axios.get('http://localhost:8080', {
       params: {
         location : location
       }
     }).then(data => {
       const { businesses, total } = data.data;
+      console.log(businesses)
       this.setState({
         businesses: [...this.state.businesses, ...businesses],
         total
-      })
+      }, this.getAllBusinesses)
     })
   }
 

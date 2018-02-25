@@ -21,10 +21,10 @@ class Summary extends Component {
     return (
       <div className="Summary">
         <h3>Summary</h3>
-        <div>Total: {this.props.total}</div>
-        <div>Businesses: {this.props.businesses.length}</div>
+        <div>PTs in Area: {this.props.total}</div>
+        <div>PTs with Ratings: {this.props.businesses.length}</div>
         <div>Average Rating: {this.getAverage()}</div>
-        <div>Number of Reviews: {this.getReviewCount()}</div>
+        <div>Total Number of Reviews: {this.getReviewCount()}</div>
       </div>
     );
   }
