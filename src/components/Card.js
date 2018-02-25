@@ -31,11 +31,11 @@ class Card extends Component {
   render() {
     return (
       <div className="Card">
-        <img src={this.props.image_url} className="image"/>
+        <img src={this.props.image_url} className="image" alt={this.props.name}/>
         <div className="description">
           <h3 className="title">{this.props.name}</h3>
           <div>
-            <img src={rating[this.props.rating]} />
+            <img src={rating[this.props.rating]} alt="rating"/>
             <span className="review_count">{this.props.reviewCount} reviews</span>
           </div>
           <div>{this.props.category}</div>

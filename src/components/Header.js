@@ -10,15 +10,22 @@ class Header extends Component {
     this.setState({location: e.target.value});
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.handleSubmit()
+    }
+  }
+
   handleSubmit = () => {
     this.props.getYelpData(this.state.location)
+    this.setState({location: ''});
   }
 
   render() {
     return (
       <div>
         <label>
-          Location: <input type="text" value={this.state.location} onChange={this.handleChange} />
+          Location: <input type="text" value={this.state.location} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
         </label>
         <button onClick={this.handleSubmit}>Submit</button>
       </div>
