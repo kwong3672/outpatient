@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 import Card from './Card';
+import '../styles/List.css';
 
 class List extends Component {
   render() {
     this.props.businesses.sort((a, b) => { return b.rating - a.rating })
     return (
-      <div>
-        <h3 className="title">List of Physical Therapists</h3>
+      <div className="List">
         {this.props.businesses.map(business => 
           <Card 
             key={business.id} 

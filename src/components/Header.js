@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../styles/Header.css'
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Header">
         <label>
           Location: <input type="text" value={this.state.location} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
         </label>

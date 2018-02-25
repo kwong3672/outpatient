@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../css/Card.css';
+import '../styles/Card.css';
 
 import zero from '../assets/images/regular_0.png';
 import one from '../assets/images/regular_1.png';
@@ -34,7 +34,7 @@ class Card extends Component {
         <img src={this.props.image_url} className="image" alt={this.props.name}/>
         <div className="description">
           <h3 className="title">{this.props.name}</h3>
-          <div>
+          <div className="rating">
             <img src={rating[this.props.rating]} alt="rating"/>
             <span className="review_count">{this.props.reviewCount} reviews</span>
           </div>

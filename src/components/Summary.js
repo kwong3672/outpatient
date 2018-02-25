@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../css/Summary.css';
+
+import '../styles/Summary.css';
 
 class Summary extends Component {
 

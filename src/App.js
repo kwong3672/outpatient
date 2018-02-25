@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import Summary from './components/Summary';
 import List from './components/List';
+import LoadingSpinner from './components/LoadingSpinner';
 
 import './App.css';
 
@@ -12,11 +13,13 @@ class App extends Component {
     super(props);
     this.state = {
       businesses: [],
-      total: 0
+      total: 0,
+      loading: false
     };
   }
 
   getYelpData = (location) => {
+    this.setState({businesses: [], total: 0, loading: true})
     axios.get('http://localhost:8080', {
       params: {
         location : location
@@ -26,7 +29,8 @@ class App extends Component {
       console.log(businesses)
       this.setState({
         businesses: [...this.state.businesses, ...businesses],
-        total
+        total, 
+        loading: false
       }, this.getAllBusinesses)
     })
   }
@@ -35,10 +39,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header getYelpData={this.getYelpData}/>
-        <div className="Sections">
-          <Summary total={this.state.total} businesses={this.state.businesses}/>
-          <List businesses={this.state.businesses}/>
-        </div>
+          {(this.state.loading) ? <LoadingSpinner /> : 
+            (
+              <div className="Sections">
+                <Summary total={this.state.total} businesses={this.state.businesses}/>
+                <List businesses={this.state.businesses}/>
+              </div>
+            )
+          }
       </div>
     );
   }
